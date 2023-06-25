@@ -2,7 +2,6 @@
 scalar DateTime
     @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
-"Indicates what fields are available at the top level of a query operation."
 type Query {
     "Find a single user by an identifying attribute."
     user(
@@ -23,23 +22,20 @@ type Query {
                 @eq
                 @rules(apply: ["prohibits:id", "required_without:id", "email"])
         ): Beneficiarie @find
-    Schedule(
-            "Search by primary key."
-            id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
-        ): Schedule @find    
+    schedule(id: ID @eq): Schedule @find    
 
     "List multiple users."
     users(
-        "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
         name: String @where(operator: "like")
     ): [User!]! @paginate(defaultCount: 10)
     beneficiaries (
-        "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
         name: String @where(operator: "like")
     ): [Beneficiarie!]! @paginate(defaultCount: 10)
+    schedules (
+        status: String @Where(operator: "like")
+    ): [Schedule!]! @paginate(defaultCount: 10)
 }
 
-"Account of a person who utilizes this application."
 type User {
   id: ID!
   name: String!
@@ -53,15 +49,15 @@ type Beneficiarie {
   cfp: String!
   name: String!
   phone: String!
-  brith: DateTime!
+  brith: String!
   email: String!
 }
-type Specialties {
+type Specialtie {
   id: ID!
   name: String!
   status: String!
 }
-type Schedule{
+type Schedule {
   id:ID!
   dtsolicitacao: DateTime!
   especialidade: String!
@@ -70,9 +66,18 @@ type Schedule{
   user_id: Beneficiarie! @belongsto
   suggestion: [Suggestion!] @hasMany
 }
-
-type Suggestion{
+type Suggestion {
   id:ID!
   semana: String!
   periodo: String!
+}
+
+type Mutation {
+  createBeneficiarie(
+    cfp: String!
+    email: String!
+    name: String!
+    phone: String!
+    brith: String!
+    ): Beneficiarie
 }

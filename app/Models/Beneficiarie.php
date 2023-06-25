@@ -14,6 +14,8 @@ class Beneficiarie extends Authenticatable
         'name',
         'email',
         'cfp',
+        'phone',
+        'brith',
     ];
 
 }
