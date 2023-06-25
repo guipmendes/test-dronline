@@ -20,7 +20,7 @@ class CreateBeneficiariesTable extends Migration
             $table->string('name',60);
             $table->string('phone',11);
             $table->date('brith');
-            $table->string('email',60);
+            $table->string('email',60)->unique();
         });
     }
 
