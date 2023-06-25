@@ -21,7 +21,7 @@ class CreateSuggestionTable extends Migration
             $table->string('periodo',5);
         });
         Schema::table('suggestion', function (Blueprint $table) {
-            $table->foreach('schedule_id')->references('id')->on('schedule');
+            $table->foreign('schedule_id')->references('id')->on('schedule');
         });
     }
 

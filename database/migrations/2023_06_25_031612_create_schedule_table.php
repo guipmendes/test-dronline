@@ -24,7 +24,7 @@ class CreateScheduleTable extends Migration
         });
 
         Schema::table('schedule', function (Blueprint $table) {
-            $table->foreach('user_id')->references('id')->on('beneficiaries');
+            $table->foreign('user_id')->references('id')->on('beneficiaries');
         });
     }
 
