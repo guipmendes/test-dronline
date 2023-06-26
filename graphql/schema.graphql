@@ -34,6 +34,10 @@ type Query {
     schedules (
         status: String @Where(operator: "like")
     ): [Schedule!]! @paginate(defaultCount: 10)
+    specialties (
+        name: String @Where(operator: "like")
+    ): [Specialtie!]! @paginate(defaultCount: 30)
+    
 }
 
 type User {
@@ -80,4 +84,22 @@ type Mutation {
     phone: String!
     brith: String!
     ): Beneficiarie
+  createSchedule(
+    especialidade: String!
+    status: String!
+    observacao: String!
+    user_id: Int!
+  ): Schedule
+  updateSchedule(
+    id: ID, 
+    especialidade: String!
+    status: String!
+    observacao: String!
+    user_id: Int!
+  ): Schedule
+  createSuggestion(
+    semana: String!
+    periodo: String!
+    schedule_id: Int!
+  ): Suggestion
 }

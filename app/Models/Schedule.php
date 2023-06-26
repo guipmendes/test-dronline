@@ -11,10 +11,10 @@ class Schedule extends Model
 
     protected $fillable = [
         'id',
-        'dtsolicitacao',
         'especialidade',
         'status',
-        'observacao'
+        'observacao',
+        'user_id'
     ];
 
     public function user(){

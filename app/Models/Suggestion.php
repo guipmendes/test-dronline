@@ -13,6 +13,7 @@ class Suggestion extends Model
         'id',
         'semana',
         'periodo',
+        'schedule_id',
     ];
 
     public function schedule(){

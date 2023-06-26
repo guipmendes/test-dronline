@@ -17,10 +17,9 @@ class CreateSchedulesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
-            $table->date('dtsolicitacao');
             $table->string('especialidade',30);
             $table->string('status',40);
-            $table->text('observacao');
+            $table->text('observacao')->nullable($value = true);
         });
 
         Schema::table('schedules', function (Blueprint $table) {
